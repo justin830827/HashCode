@@ -1,7 +1,7 @@
 def solve_pizza(nums, target):
     dp = [[None for _ in range(len(nums))] for _ in range(target+1)]
 
-    dp[nums[0]][0] = [nums[0]]
+    dp[nums[0]][0] = [0]
 
     for j in range(len(nums)):
         dp[0][j] = []
@@ -14,7 +14,7 @@ def solve_pizza(nums, target):
                     continue
                 if i-nums[j] >= 0:
                     if dp[i-nums[j]][j-1] is not None:
-                        dp[i][j] = list(dp[i-nums[j]][j-1] + [nums[j]])
+                        dp[i][j] = list(dp[i-nums[j]][j-1] + [j])
     
     for i in range(target, -1, -1):
         if dp[i][-1] is not None:
